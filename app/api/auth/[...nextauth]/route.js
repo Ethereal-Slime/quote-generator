@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from 'next-auth/providers/google';
 
 import User from "@models/user";
-import { connectTODB } from '@utils/database';
+import { connectToDB } from '@utils/database';
 
 
 const handler = NextAuth({
@@ -23,7 +23,7 @@ const handler = NextAuth({
 
     async signIn({ profile }){
         try {
-            await connectTODB();
+            await connectToDB();
 
             //check if a user already exists
             const UserExists = await User.findOne({

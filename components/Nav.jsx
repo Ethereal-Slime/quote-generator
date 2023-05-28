@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 
 const Nav = () => {
-  const { data: session} = useSession;
+  const { data: session} = useSession();
 
   const [providers, setProviders ] = useState(null);
   const [ToggleDropdown, setToggleDropdown] = useState(false)
@@ -49,7 +49,7 @@ const Nav = () => {
 
             <Link href="/profile">
               <Image
-                src='/assets/images/logo.svg'
+                src={session?.user.image}
                 width={37}
                 height={37}
                 className='rounded-full'
@@ -78,7 +78,7 @@ const Nav = () => {
         {session?.user ? (
           <div className='flex'>
               <Image
-                src='/assets/images/logo.svg'
+                src={session?.user.image}
                 width={37}
                 height={37}
                 className='rounded-full'
